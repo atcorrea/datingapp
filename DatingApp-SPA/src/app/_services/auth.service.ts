@@ -23,4 +23,8 @@ login(model: any) {
   );
 }
 
+register(model: any) {
+  return this.client.post(this.baseUrl + 'register', model);
+}
+
 }
