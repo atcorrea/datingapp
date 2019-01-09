@@ -11,9 +11,24 @@
     <li class="nav-item">
       <a class="nav-link disabled" href="#">Messages</a>
     </li>
+    <li class="nav-item" *ngIf="loggedIn()">
+      <a class="nav-link" (click)="logOut()">Logout</a>
+    </li>
   </ul>
 
-  <form #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()">
+  <div *ngIf="loggedIn()" class="dropdown">
+      <a class="dropdown-toggle text-light">
+        Welcome User
+      </a>
+    
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Logout</a>
+      </div>
+    </div>
+
+  <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()">
     <input class="form-control mr-sm-2" type="text" name="username" #username="ngModel"
     placeholder="UserName" required [(ngModel)]="model.username"/>
 
